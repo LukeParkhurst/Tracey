@@ -1,0 +1,41 @@
+
+// TODO write official Json reader in Java, so to read in a file and strip it of data to push into the DB
+
+
+// The following code chunks help to insert the data from storyline into their respective collections in the MongoDB
+
+    //The following code is to insert all unique locations saved onto the Places.Json, inserts them into the
+    //    PointOfInterest collection in the MongoDB
+    try (Reader reader = new FileReader("src/main/java/edu/northeastern/tracey/Places.json")) {
+      Gson gson = new Gson();
+      PointOfInterest[] places = gson.fromJson(reader, PointOfInterest[].class);
+
+      for (PointOfInterest place : places) {
+            repository.save(place);
+            System.out.printf("Place: %d saved! \n", place.getId());
+      }
+    }
+
+    // The following code takes all activities in the Activity.json and inserts them into the WorkoutActivity Collection
+    //    in the MongoDB
+    try (Reader reader = new FileReader("src/main/java/edu/northeastern/tracey/Activity.json")) {
+      Gson gson2 = new Gson();
+      WorkoutActivity[] acts = gson2.fromJson(reader, WorkoutActivity[].class);
+
+      for (WorkoutActivity act : acts) {
+        repo.save(act);
+        System.out.println("Document added");
+      }
+    }
+
+    // The following code takes all activities with location ID's attached to them from the ActivitiesWithLocations.Json
+    //    and inserts them into the WorkoutActivity collection in the MongoDB
+    try (Reader reader = new FileReader("src/main/java/edu/northeastern/tracey/ActivitiesWithLocations.json")) {
+      Gson gson2 = new Gson();
+      Walking[] acts = gson2.fromJson(reader, Walking[].class);
+
+      for (Walking act : acts) {
+        repo.save(act);
+        System.out.println("Document added");
+      }
+    }

@@ -1,0 +1,670 @@
+---
+swagger: "2.0"
+info:
+  description: First API for the Tracey database models.
+  version: 1.0.0
+  title: Tracey_Database_API
+  contact:
+    email: fish_b@it.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /rikkygaray21/tracey-01/1.0.0
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+schemes:
+- https
+paths:
+  /locations:
+    get:
+      summary: Get record of all locations
+      operationId: getAllLocationRecords
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Locations - Get all locations - success
+        "400":
+          description: Locations - Get all locations - failed
+    post:
+      summary: Create a location
+      operationId: createLocationRecord
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Locations - Post new location - success
+        "400":
+          description: Locations - Post new location - failed
+  /locations/{locationId}:
+    get:
+      summary: Get a specific location by searching its locationId
+      operationId: getSingleLocationById
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: String ID of the location to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: byLocationId - Get location by Id - success
+        "400":
+          description: byLocationId - Get location by Id - failed
+    put:
+      summary: Put/Modify a specific location by searching its locationId
+      operationId: putSingleLocationById
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: String ID of the location to put
+        required: true
+        type: string
+      responses:
+        "200":
+          description: byLocationId - Put/modify location by Id - success
+        "400":
+          description: byLocationId - Put/modify location by Id - failed
+    delete:
+      summary: Delete a specific location by searching its locationId
+      operationId: deleteSingleLocation
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: Numeric ID of the location to delete
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: byLocationId - Delete location by Id - success
+        "400":
+          description: byLocationId - Delete location by Id - failed
+    patch:
+      summary: Patch/Modify a specific location by searching its locationId
+      operationId: patchSingleLocationById
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: String ID of the location to patch
+        required: true
+        type: string
+      responses:
+        "200":
+          description: byLocationId - Patch/modify location by Id - success
+        "400":
+          description: byLocationId - Patch/modify location by Id - failed
+  /locations/{locationId}/activities:
+    get:
+      summary: Gets all activities from a specific location.
+      operationId: getActivitiesAtLocationById
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: String ID of the location to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Activites_by_LocationId - Get activities by Id - success
+        "400":
+          description: Activites_by_LocationId - Get activities by Id - failed
+    post:
+      summary: Add an activity to a given location
+      operationId: postActivityToLocationById
+      produces:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: String ID of the location to post
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Activity_by_LocationId - Post location by Id - success
+        "400":
+          description: Activity_by_LocationId - Post location by Id - failed
+  /activities:
+    get:
+      summary: Get all activities.
+      operationId: getAllActivityRecords
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Activities - Get collection - success
+        "400":
+          description: Activities - Get collection - failed
+    post:
+      summary: Add an activity
+      operationId: postActivityToRecord
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Activities - Post collection - success
+        "400":
+          description: Activities - Post collection - failed
+  /activities/{activityId}:
+    get:
+      summary: Get a specific activity by serching its Id
+      operationId: getSingleActivityById
+      produces:
+      - application/json
+      parameters:
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitybyId - Get activity by its Id - success
+        "400":
+          description: ActivitybyId - Get activity by its Id - failed
+    put:
+      summary: Modify a specific activity by searching its Id
+      operationId: putSingleActivityById
+      produces:
+      - application/json
+      parameters:
+      - name: activityId
+        in: path
+        description: String ID of the activity to put
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitybyId - Put activity by its Id - success
+        "400":
+          description: ActivitybyId - Put activity by its Id - failed
+    delete:
+      summary: Delete a specific activity by searching its Id
+      operationId: deleteSingleActivityById
+      produces:
+      - application/json
+      parameters:
+      - name: activityId
+        in: path
+        description: String ID of the activity to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitybyId - Delete activity by its Id - success
+        "400":
+          description: ActivitybyId - Delete activity by its Id - failed
+    patch:
+      summary: Modify a specific activity by serching its Id
+      operationId: patchSingleActivityById
+      produces:
+      - application/json
+      parameters:
+      - name: activityId
+        in: path
+        description: String ID of the activity to patch
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitybyId - Patch activity by its Id - success
+        "400":
+          description: ActivitybyId - Patch activity by its Id - failed
+  /users/{userId}/days/{dayId}/activities:
+    get:
+      summary: Get all activites for a specific user on a given day searching by user and day Id.
+      operationId: getActivitiesByUserAndDay
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitiesByUserAndDay - Get activities on specific day - success
+        "400":
+          description: ActivitiesByUserAndDay - Get activities on specific day - failed
+    post:
+      summary: Create and add an activity for an user on a given day.
+      operationId: postActivitiyByUserAndDay
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitiesByUserAndDay - Post activities on specific day - success
+        "400":
+          description: ActivitiesByUserAndDay - Post activities on specific day - failed
+  /users/{userId}/months/{monthId}/activities:
+    get:
+      summary: Gets all activites for a specific user on a given month by searching its user and month Id.
+      operationId: getActivitiesByUserAndMonth
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitiesByUserAndMonth - Get activities on specific month - success
+        "400":
+          description: ActivitiesByUserAndMonth - Get activities on specific month - failed
+    post:
+      summary: Create and add an activity for a specific user on a given month by searching its user and month Id.
+      operationId: postActivitiesByUserAndMonth
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivitiesByMonth - Post specific users activities on specific month - success
+        "400":
+          description: ActivitiesByMonth - Post specific users activities on specific month - failed
+  /users/{userId}/days/{dayId}/activites/{activityId}:
+    get:
+      summary: Get a specific activity. Find by User, Day and Activity Id.
+      operationId: getActivityByIdAndUserAndDayId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndUserAndDayId - Get specific users activity on specific day - success
+        "400":
+          description: ActivityByIdAndUserAndDayId - Get specific users activity on specific day - failed
+    put:
+      summary: Modify/Put a specific activity. Find by User, Day and Activity Id.
+      operationId: putActivityByIdAndUserAndDayId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndUserAndDayId - Put specific users activity on specific day - success
+        "400":
+          description: ActivityByIdAndUserAndDayId - Put specific users activity on specific day - failed
+    delete:
+      summary: Delete a specific activity by its Id
+      operationId: deleteActivityByIdAndByDay
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndDayId - Delete specific users activity on specific day - success
+        "400":
+          description: ActivityByIdAndDayId - Delete specific users activity on specific day - failed
+    patch:
+      summary: Modify/Patch a specific activity. Find by User, Day and Activity Id.
+      operationId: patchActivityByIdAndUserAndDayId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: dayId
+        in: path
+        description: String ID of the day to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndUserAndDayId - Patch specific users activity on specific day - success
+        "400":
+          description: ActivityByIdAndUserAndDayId - Patch specific users activity on specific day - failed
+  /users/{userId}/months/{monthId}/activites/{activityId}:
+    get:
+      summary: Get a specific activtiy. Find by searching for User, Month and Activity Id.
+      operationId: getActivityByIdAndUserAndMonthId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndMonthAndDay - Get specific users activity on specific month - success
+        "400":
+          description: ActivityByIdAndDayId - Get specific users activity on specific month - failed
+    put:
+      summary: Modify/Put a specific activtiy. Find by searching for User, Month and Activity Id.
+      operationId: putActivityByIdAndUserAndMonthId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndDayId - Put specific users activity on specific month - success
+        "400":
+          description: ActivityByIdAndDayId - Put specific users activity on specific month - failed
+    delete:
+      summary: Delete a specific activtiy. Find by searching for User, Month and Activity Id.
+      operationId: deleteActivityByIdAndUserAndMonthId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndDayId - Delete specific activity on specific month - success
+        "400":
+          description: ActivityByIdAndDayId - Delete specific activity on specific month - failed
+    patch:
+      summary: Modify/Patch a specific activtiy. Find by searching for User, Month and Activity Id.
+      operationId: patchActivityByIdAndUserAndMonthId
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      - name: monthId
+        in: path
+        description: String ID of the month to get
+        required: true
+        type: string
+      - name: activityId
+        in: path
+        description: String ID of the activity to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ActivityByIdAndDayId - Patch specific activity on specific month - success
+        "400":
+          description: ActivityByIdAndDayId - Patch specific activity on specific month - failed
+  /users:
+    get:
+      summary: Get all user records
+      operationId: getUsersRecord
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Users - Get users record - success
+        "400":
+          description: Users - Get users record - failed
+    post:
+      summary: Create a user record
+      operationId: postUsersRecord
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: Users - Post users record - success
+        "400":
+          description: Users - Post users record - failed
+  /users/{userId}:
+    get:
+      summary: Gets a specific user by its Id
+      operationId: getUserById
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to get
+        required: true
+        type: string
+      responses:
+        "200":
+          description: UsersById - Get users record - success
+        "400":
+          description: UsersById - Get users record - failed
+    put:
+      summary: Modify/Put a specific user by its Id
+      operationId: putUserById
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to put
+        required: true
+        type: string
+      responses:
+        "200":
+          description: UsersById - Put users record - success
+        "400":
+          description: UsersById - Put users record - failed
+    delete:
+      summary: Delete a specific user by its Id
+      operationId: deleteUserById
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: UsersById - Delete users record - success
+        "400":
+          description: UsersById - Delete users record - failed
+    patch:
+      summary: Modify/Patch a specific user by its Id
+      operationId: patchUserById
+      produces:
+      - application/json
+      parameters:
+      - name: userId
+        in: path
+        description: String ID of the user to patch
+        required: true
+        type: string
+      responses:
+        "200":
+          description: UsersById - Patch users record - success
+        "400":
+          description: UsersById - Patch users record - failed
+definitions:
+  User:
+    required:
+    - username
+    properties:
+      id:
+        type: integer
+        example: 21
+      username:
+        type: string
+        example: tracey5500
+    description: A particular user can have a list of Locations visited and activities performed.
+  Location:
+    properties:
+      id:
+        type: string
+        example: 60e0b638edf7d52a14baa908
+      name:
+        type: string
+        example: home
+      lat:
+        type: integer
+        example: "47.67645"
+      lon:
+        type: integer
+        example: "-122.32305"
+    description: A Location can have, (ID, name, latitude-longitude).
+  Activity:
+    properties:
+      id:
+        type: string
+        example: 60ea3924a0fd28252c17cfce
+      name:
+        type: string
+        example: walking
+      startTime:
+        type: string
+        format: date-time
+        example: 20130209T063407-0800
+      endTime:
+        type: string
+        format: date-time
+        example: 20130209T132707-0800
+      duration:
+        type: number
+        example: 120.0
+      distance:
+        type: number
+        example: 15.0
+      steps:
+        type: integer
+        example: 593
+      calories:
+        type: integer
+        example: 25
+    description: A particular activity available to a user. Walking, running, cycling, transportation.
